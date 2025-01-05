@@ -2,30 +2,21 @@ import {
   render as rtlRender,
   screen,
   waitForElementToBeRemoved,
-} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import Cookies from 'js-cookie';
-import { RouterProvider, createMemoryRouter } from 'react-router';
+} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import Cookies from "js-cookie";
+import { RouterProvider, createMemoryRouter } from "react-router";
 
-import { AppProvider } from '@/app/provider';
+import { AppProvider } from "@/app/provider";
 
-import {
-  createDiscussion as generateDiscussion,
-  createUser as generateUser,
-} from './data-generators';
-import { db } from './mocks/db';
-import { AUTH_COOKIE, authenticate, hash } from './mocks/utils';
+import { createUser as generateUser } from "./data-generators";
+import { db } from "./mocks/db";
+import { AUTH_COOKIE, authenticate, hash } from "./mocks/utils";
 
 export const createUser = async (userProperties?: any) => {
   const user = generateUser(userProperties) as any;
   await db.user.create({ ...user, password: hash(user.password) });
   return user;
-};
-
-export const createDiscussion = async (discussionProperties?: any) => {
-  const discussion = generateDiscussion(discussionProperties);
-  const res = await db.discussion.create(discussion);
-  return res;
 };
 
 export const loginAsUser = async (user: any) => {
@@ -40,11 +31,11 @@ export const waitForLoadingToFinish = () =>
       ...screen.queryAllByTestId(/loading/i),
       ...screen.queryAllByText(/loading/i),
     ],
-    { timeout: 4000 },
+    { timeout: 4000 }
   );
 
 const initializeUser = async (user: any) => {
-  if (typeof user === 'undefined') {
+  if (typeof user === "undefined") {
     const newUser = await createUser();
     return loginAsUser(newUser);
   } else if (user) {
@@ -56,7 +47,7 @@ const initializeUser = async (user: any) => {
 
 export const renderApp = async (
   ui: any,
-  { user, url = '/', path = '/', ...renderOptions }: Record<string, any> = {},
+  { user, url = "/", path = "/", ...renderOptions }: Record<string, any> = {}
 ) => {
   // if you want to render the app unauthenticated then pass "null" as the user
   const initializedUser = await initializeUser(user);
@@ -69,9 +60,9 @@ export const renderApp = async (
       },
     ],
     {
-      initialEntries: url ? ['/', url] : ['/'],
+      initialEntries: url ? ["/", url] : ["/"],
       initialIndex: url ? 1 : 0,
-    },
+    }
   );
 
   const returnValue = {
@@ -93,5 +84,5 @@ export const renderApp = async (
   return returnValue;
 };
 
-export * from '@testing-library/react';
+export * from "@testing-library/react";
 export { userEvent, rtlRender };

@@ -81,11 +81,9 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
   });
   const { checkAccess } = useAuthorization();
   const navigation = [
-    // { name: 'Dashboard', to: paths.app.dashboard.getHref(), icon: Home },
-    // { name: 'Discussions', to: paths.app.discussions.getHref(), icon: Folder },
     checkAccess({ allowedRoles: [ROLES.ADMIN] }) && {
       name: "Users",
-      to: paths.app.users.getHref(),
+      to: paths.users.getHref(),
       icon: Users,
     },
   ].filter(Boolean) as SideNavigationItem[];
@@ -178,13 +176,6 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem
-                onClick={() => navigate(paths.app.profile.getHref())}
-                className={cn("block px-4 py-2 text-sm text-gray-700")}
-              >
-                Your Profile
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
               <DropdownMenuItem
                 className={cn("block px-4 py-2 text-sm text-gray-700 w-full")}
                 onClick={() => logout.mutate({})}

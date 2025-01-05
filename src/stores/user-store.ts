@@ -16,13 +16,11 @@ type UserStore = {
   username: string;
   hobbies: string[];
   address: Address;
-  favSportTeam: string | null;
   toggleLogin: () => void;
   incrementAge: () => void;
   setUsername: (newUsername: string) => void;
   addHobby: (hobby: any) => void;
   setAddress: (newAddress: Address) => void;
-  setFavSportTeam: (team: string | null) => void;
 };
 
 export const useUserStores = create<UserStore>((set) => ({
@@ -40,7 +38,6 @@ export const useUserStores = create<UserStore>((set) => ({
     city: "Anytown",
     zip: "12345",
   },
-  favSportTeam: null,
   toggleLogin: () => set((state) => ({ isLogged: !state.isLogged })),
   incrementAge: () => set((state) => ({ age: state.age + 1 })),
   setUsername: (newUsername: string) => set({ username: newUsername }),
@@ -51,5 +48,4 @@ export const useUserStores = create<UserStore>((set) => ({
         : [...state.hobbies, hobby],
     })),
   setAddress: (newAddress: Address) => set({ address: newAddress }),
-  setFavSportTeam: (team: string | null) => set({ favSportTeam: team }),
 }));

@@ -1,12 +1,11 @@
-import * as React from 'react';
-import { useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router';
+import * as React from "react";
+import { useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router";
 
-import logo from '@/assets/logo.svg';
-import { Head } from '@/components/seo';
-import { Link } from '@/components/ui/link';
-import { paths } from '@/config/paths';
-import { useUser } from '@/lib/auth';
+import logo from "@/assets/logo.svg";
+import { Link } from "@/components/ui/link";
+import { paths } from "@/config/paths";
+import { useUser } from "@/lib/auth";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -16,13 +15,13 @@ type LayoutProps = {
 export const AuthLayout = ({ children, title }: LayoutProps) => {
   const user = useUser();
   const [searchParams] = useSearchParams();
-  const redirectTo = searchParams.get('redirectTo');
+  const redirectTo = searchParams.get("redirectTo");
 
   const navigate = useNavigate();
 
   useEffect(() => {
     if (user.data) {
-      navigate(redirectTo ? redirectTo : paths.app.dashboard.getHref(), {
+      navigate(redirectTo ? redirectTo : paths.users.getHref(), {
         replace: true,
       });
     }
@@ -30,7 +29,6 @@ export const AuthLayout = ({ children, title }: LayoutProps) => {
 
   return (
     <>
-      <Head title={title} />
       <div className="flex min-h-screen flex-col justify-center bg-gray-50 py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <div className="flex justify-center">

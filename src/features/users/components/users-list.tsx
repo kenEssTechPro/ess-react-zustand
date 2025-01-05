@@ -1,6 +1,6 @@
-import { ComponentWithStore } from "./ComponentWithStore";
-import { ComponentWithStoreThree } from "./ComponentWithStoreThree";
-import { ComponentWithStoreTwo } from "./ComponentWithStoreTwo";
+import { ComponentWithStore } from "./component-with-store";
+import { ComponentWithStoreThree } from "./component-with-store-three";
+import { ComponentWithStoreTwo } from "./component-with-store-two";
 
 export const UsersList = () => {
   return (
