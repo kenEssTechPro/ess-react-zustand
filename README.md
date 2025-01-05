@@ -10,9 +10,7 @@ Prerequisites:
 To set up the app execute the following commands.
 
 ```bash
-git clone https://github.com/alan2207/bulletproof-react.git
-cd bulletproof-react
-cd apps/react-vite
+git clone https://github.com/kenEssTechPro/ess-react-zustand.git
 cp .env.example .env
 yarn install
 ```
